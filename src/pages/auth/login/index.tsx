@@ -67,17 +67,18 @@ export const LoginForm = () => {
         type='text'
         className='border border-1 border-gray-200 text-sm w-full py-3 rounded-2xl my-2 focus:ring-transparent focus:border-sky-900'
       />
-      <div className='mt-3 flex items-center'>
+      <div className='mt-2 flex items-center'>
         <input type='checkbox' className='rounded-md border border-gray-400 mr-2 focus:ring-0' />
         <span className='text-sky-800 text-xs mr-2'>I agree to the terms and policy.</span>
       </div>
       <button className='py-4 mt-8 bg-sky-900 text-white text-center w-full text-sm rounded-2xl'>
         Login
       </button>
-      <p className='text-sky-800 text-xs mr-2 mt-4'>
+      <p className='text-sky-800 text-xs mr-2 mt-3'>
         Create an account?
         <span className='mx-1 text-sky-500 hover:cursor-pointer'>Sign in</span>{' '}
       </p>
+      <p className='text-gray-400 text-xs mr-2 mt-7 text-center'>{`${new Date().getFullYear()} Captain Hook, All right Reserved.`}</p>
     </div>
   )
 }
