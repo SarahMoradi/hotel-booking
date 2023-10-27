@@ -1,61 +1,38 @@
-import LoginImage from '../../../assets/login3.png'
 import {useForm, SubmitHandler} from 'react-hook-form'
-import Marquee from 'react-fast-marquee'
+import {login} from '../../../services/auth'
+import {LoginBannerContainer} from '../../../components/auth/login/login-banner'
+import {LoginFormContainer} from '../../../components/auth/login/auth-container'
 
-export const MarqueeSlider = () => {
-  return (
-    <div className='my-5 text-white font-bold text-center'>
-      <div className='mb-8 text-xs text-white'> - Sponsors in industry - </div>
-      <Marquee>
-        <div>
-          <span className='mx-5'>Google</span> <span className='mx-5'>Spotify</span>{' '}
-          <span className='mx-5'>Freepic</span> <span className='mx-5'>Amazon</span>{' '}
-          <span className='mx-5'>Industry</span> <span className='mx-5'>Disney</span>{' '}
-        </div>
-      </Marquee>
-    </div>
-  )
-}
-export const LoginBannerContainer = () => {
-  return (
-    <div className='flex-1 hidden xl:block'>
-      <div className='h-full bg-sky-900 rounded-3xl flex flex-col justify-center p-20 py-10'>
-        <h1 className='text-white text-3xl'>The simplest way to book your hotel to stay there</h1>
-        <span className='mt-3 text-xs text-white'>
-          Enter your credential to access for booking hotel you require.
-        </span>
-        <div>
-          <img src={LoginImage} alt='login' className='rounded-2xl mt-10 h-30' />
-        </div>
-        <MarqueeSlider />
-      </div>
-    </div>
-  )
-}
 export const LoginForm = () => {
   type Inputs = {
     username: string
     password: string
     exampleRequired: string
   }
+  const onInvalid = (errors: any) => console.error(errors)
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: {errors},
   } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data, 'data')
+  const onSubmit: SubmitHandler<Inputs> = async (values) => {
+    try {
+      const data = await login(values)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='mt-8'>
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} className='mt-8'>
       <p className='text-sm'>Email Address</p>
       <input
         {...register('username', {required: true})}
         placeholder='example@domain.com'
-        name='username'
-        type='text'
+        type='email'
         className='border border-1 border-gray-200 text-sm w-full py-3 rounded-2xl my-2 focus:ring-transparent focus:border-sky-900'
       />
       <div className='flex justify-between items-center mt-4'>
@@ -64,9 +41,7 @@ export const LoginForm = () => {
       </div>
       <input
         {...register('password')}
-        placeholder='example01'
-        name='password'
-        type='text'
+        type='password'
         className='border border-1 border-gray-200 text-sm w-full py-3 rounded-2xl my-2 focus:ring-transparent focus:border-sky-900'
       />
       <div className='mt-2 flex items-center'>
@@ -75,7 +50,9 @@ export const LoginForm = () => {
       </div>
       <input
         type='submit'
-        className='py-4 mt-8 bg-sky-900 text-white text-center w-full text-sm rounded-2xl'
+        value='login'
+        ///cursor-hover made a bug for submitting: no hover | no submission (BUG)
+        className='py-4 mt-8 bg-sky-900 text-white text-center w-full text-sm rounded-2xl cursor-pointer'
       />
 
       <p className='text-sky-800 text-xs mr-2 mt-3'>
@@ -84,40 +61,6 @@ export const LoginForm = () => {
       </p>
       <p className='text-gray-400 text-xs mr-2 mt-7 text-center'>{`${new Date().getFullYear()} Captain Hook, All right Reserved.`}</p>
     </form>
-  )
-}
-export const LoginFormContainer = () => {
-  return (
-    <div className='flex-1'>
-      <div className='text-sm text-sky-900 font-bold'>⚜️ Silco | Hotel Booking</div>
-      <div className='p-0  text-2xl mt-10 md:pl-20 md:pr-32'>
-        <h1>Get Started Now</h1>
-        <span className='text-xs'>
-          Enter your credential to access for booking hotel you require.
-        </span>
-        <div className='flex flex-col text-sm justify-between mt-5 mb-10 md:flex-row'>
-          <button className='my-3 rounded-2xl py-3 px-9 border text-sky-800 border-sky-800 hover:bg-sky-900 hover:text-white md:m-0'>
-            Login with Google
-          </button>
-          <button className='rounded-2xl py-3 px-9 border text-sky-800 border-sky-800 hover:bg-sky-900 hover:text-white'>
-            Login with Apple
-          </button>
-        </div>
-        <div className='relative'>
-          <hr className='border border-b-1 border-gray-100 bg-red-100' />
-          <div className='flex justify-center'>
-            <span
-              className='text-gray-300 text-sm absolute text-center mx-auto bg-white px-2'
-              style={{top: '-10px'}}
-            >
-              or
-            </span>
-          </div>
-        </div>
-        {/* login form */}
-        <LoginForm />
-      </div>
-    </div>
   )
 }
 
