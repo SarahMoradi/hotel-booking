@@ -1,34 +1,17 @@
 import LoginImage from '../../../assets/login3.png'
-import Marquee from 'react-marquee-slider'
-import times from 'lodash/times'
+import {useForm, SubmitHandler} from 'react-hook-form'
+import Marquee from 'react-fast-marquee'
 
 export const MarqueeSlider = () => {
   return (
     <div className='my-5 text-white font-bold text-center'>
       <div className='mb-8 text-xs text-white'> - Sponsors in industry - </div>
-      <Marquee key={1} velocity={10}>
-        {times(1, String).map((id) => (
-          <div>
-            <span className='mx-5' key={`marquee-review-${id}`}>
-              Google
-            </span>{' '}
-            <span className='mx-5' key={`marquee-review-${id}`}>
-              Spotify
-            </span>{' '}
-            <span className='mx-5' key={`marquee-review-${id}`}>
-              Freepic
-            </span>{' '}
-            <span className='mx-5' key={`marquee-review-${id}`}>
-              Amazon
-            </span>{' '}
-            <span className='mx-5' key={`marquee-review-${id}`}>
-              Industry
-            </span>{' '}
-            <span className='mx-5' key={`marquee-review-${id}`}>
-              Disney
-            </span>{' '}
-          </div>
-        ))}
+      <Marquee>
+        <div>
+          <span className='mx-5'>Google</span> <span className='mx-5'>Spotify</span>{' '}
+          <span className='mx-5'>Freepic</span> <span className='mx-5'>Amazon</span>{' '}
+          <span className='mx-5'>Industry</span> <span className='mx-5'>Disney</span>{' '}
+        </div>
       </Marquee>
     </div>
   )
@@ -37,18 +20,12 @@ export const LoginBannerContainer = () => {
   return (
     <div className='flex-1 hidden xl:block'>
       <div className='h-full bg-sky-900 rounded-3xl flex flex-col justify-center p-20 py-10'>
-        <h1 className='text-white text-3xl'>
-          The simplest way to book your hotel to stay there
-        </h1>
+        <h1 className='text-white text-3xl'>The simplest way to book your hotel to stay there</h1>
         <span className='mt-3 text-xs text-white'>
           Enter your credential to access for booking hotel you require.
         </span>
         <div>
-          <img
-            src={LoginImage}
-            alt='login'
-            className='rounded-2xl mt-10 h-30'
-          />
+          <img src={LoginImage} alt='login' className='rounded-2xl mt-10 h-30' />
         </div>
         <MarqueeSlider />
       </div>
@@ -56,53 +33,63 @@ export const LoginBannerContainer = () => {
   )
 }
 export const LoginForm = () => {
+  type Inputs = {
+    username: string
+    password: string
+    exampleRequired: string
+  }
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: {errors},
+  } = useForm<Inputs>()
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data, 'data')
+
   return (
-    <div className='mt-8'>
+    <form onSubmit={handleSubmit(onSubmit)} className='mt-8'>
       <p className='text-sm'>Email Address</p>
       <input
+        {...register('username', {required: true})}
         placeholder='example@domain.com'
+        name='username'
         type='text'
         className='border border-1 border-gray-200 text-sm w-full py-3 rounded-2xl my-2 focus:ring-transparent focus:border-sky-900'
       />
       <div className='flex justify-between items-center mt-4'>
         <p className='text-sm'>Password</p>
-        <span className='text-sky-800 text-xs mr-2 hover:cursor-pointer'>
-          Forgot Password?
-        </span>
+        <span className='text-sky-800 text-xs mr-2 hover:cursor-pointer'>Forgot Password?</span>
       </div>
       <input
+        {...register('password')}
         placeholder='example01'
+        name='password'
         type='text'
         className='border border-1 border-gray-200 text-sm w-full py-3 rounded-2xl my-2 focus:ring-transparent focus:border-sky-900'
       />
       <div className='mt-2 flex items-center'>
-        <input
-          type='checkbox'
-          className='rounded-md border border-gray-400 mr-2 focus:ring-0'
-        />
-        <span className='text-sky-800 text-xs mr-2'>
-          I agree to the terms and policy.
-        </span>
+        <input type='checkbox' className='rounded-md border border-gray-400 mr-2 focus:ring-0' />
+        <span className='text-sky-800 text-xs mr-2'>I agree to the terms and policy.</span>
       </div>
-      <button className='py-4 mt-8 bg-sky-900 text-white text-center w-full text-sm rounded-2xl'>
-        Login
-      </button>
+      <input
+        type='submit'
+        className='py-4 mt-8 bg-sky-900 text-white text-center w-full text-sm rounded-2xl'
+      />
+
       <p className='text-sky-800 text-xs mr-2 mt-3'>
         Create an account?
-        <span className='mx-1 text-sky-500 hover:cursor-pointer'>
-          Sign in
-        </span>{' '}
+        <span className='mx-1 text-sky-500 hover:cursor-pointer'>Sign in</span>{' '}
       </p>
       <p className='text-gray-400 text-xs mr-2 mt-7 text-center'>{`${new Date().getFullYear()} Captain Hook, All right Reserved.`}</p>
-    </div>
+    </form>
   )
 }
 export const LoginFormContainer = () => {
   return (
     <div className='flex-1'>
-      <div className='text-sm text-sky-900 font-bold'>
-        ⚜️ Silco | Hotel Booking
-      </div>
+      <div className='text-sm text-sky-900 font-bold'>⚜️ Silco | Hotel Booking</div>
       <div className='p-0  text-2xl mt-10 md:pl-20 md:pr-32'>
         <h1>Get Started Now</h1>
         <span className='text-xs'>
@@ -121,7 +108,7 @@ export const LoginFormContainer = () => {
           <div className='flex justify-center'>
             <span
               className='text-gray-300 text-sm absolute text-center mx-auto bg-white px-2'
-              style={{ top: '-10px' }}
+              style={{top: '-10px'}}
             >
               or
             </span>
