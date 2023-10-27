@@ -37,12 +37,18 @@ export const LoginBannerContainer = () => {
   return (
     <div className='flex-1 hidden xl:block'>
       <div className='h-full bg-sky-900 rounded-3xl flex flex-col justify-center p-20 py-10'>
-        <h1 className='text-white text-3xl'>The simplest way to book your hotel to stay there</h1>
+        <h1 className='text-white text-3xl'>
+          The simplest way to book your hotel to stay there
+        </h1>
         <span className='mt-3 text-xs text-white'>
           Enter your credential to access for booking hotel you require.
         </span>
         <div>
-          <img src={LoginImage} alt='login' className='rounded-2xl mt-10 h-30' />
+          <img
+            src={LoginImage}
+            alt='login'
+            className='rounded-2xl mt-10 h-30'
+          />
         </div>
         <MarqueeSlider />
       </div>
@@ -60,7 +66,9 @@ export const LoginForm = () => {
       />
       <div className='flex justify-between items-center mt-4'>
         <p className='text-sm'>Password</p>
-        <span className='text-sky-800 text-xs mr-2 hover:cursor-pointer'>Forgot Password?</span>
+        <span className='text-sky-800 text-xs mr-2 hover:cursor-pointer'>
+          Forgot Password?
+        </span>
       </div>
       <input
         placeholder='example01'
@@ -68,15 +76,22 @@ export const LoginForm = () => {
         className='border border-1 border-gray-200 text-sm w-full py-3 rounded-2xl my-2 focus:ring-transparent focus:border-sky-900'
       />
       <div className='mt-2 flex items-center'>
-        <input type='checkbox' className='rounded-md border border-gray-400 mr-2 focus:ring-0' />
-        <span className='text-sky-800 text-xs mr-2'>I agree to the terms and policy.</span>
+        <input
+          type='checkbox'
+          className='rounded-md border border-gray-400 mr-2 focus:ring-0'
+        />
+        <span className='text-sky-800 text-xs mr-2'>
+          I agree to the terms and policy.
+        </span>
       </div>
       <button className='py-4 mt-8 bg-sky-900 text-white text-center w-full text-sm rounded-2xl'>
         Login
       </button>
       <p className='text-sky-800 text-xs mr-2 mt-3'>
         Create an account?
-        <span className='mx-1 text-sky-500 hover:cursor-pointer'>Sign in</span>{' '}
+        <span className='mx-1 text-sky-500 hover:cursor-pointer'>
+          Sign in
+        </span>{' '}
       </p>
       <p className='text-gray-400 text-xs mr-2 mt-7 text-center'>{`${new Date().getFullYear()} Captain Hook, All right Reserved.`}</p>
     </div>
@@ -85,7 +100,9 @@ export const LoginForm = () => {
 export const LoginFormContainer = () => {
   return (
     <div className='flex-1'>
-      <div className='text-sm text-sky-900 font-bold'>⚜️ Silco | Hotel Booking</div>
+      <div className='text-sm text-sky-900 font-bold'>
+        ⚜️ Silco | Hotel Booking
+      </div>
       <div className='p-0  text-2xl mt-10 md:pl-20 md:pr-32'>
         <h1>Get Started Now</h1>
         <span className='text-xs'>
@@ -104,7 +121,7 @@ export const LoginFormContainer = () => {
           <div className='flex justify-center'>
             <span
               className='text-gray-300 text-sm absolute text-center mx-auto bg-white px-2'
-              style={{top: '-10px'}}
+              style={{ top: '-10px' }}
             >
               or
             </span>
