@@ -119,7 +119,7 @@ export const LoginFormContainer = () => {
 
 const Login = () => {
   return (
-    <div className='p-0 h-screen md:p-10 md:bg-gray-100'>
+    <div className='p-0 md:p-10 md:bg-gray-100'>
       <div className='container mx-auto flex w-100 p-10 rounded-3xl bg-white md:drop-shadow-2xl'>
         <LoginFormContainer />
         <LoginBannerContainer />
