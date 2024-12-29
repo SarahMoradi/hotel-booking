@@ -3,20 +3,20 @@ import axios from 'axios'
 
 import {getAuth} from './auth-helper'
 
-enum StatusCode {
-  InternalServerError = 500,
-  TooManyRequests = 429,
-  Success = 200 || 300,
-  Unauthorized = 401,
-  Forbidden = 403,
-  NotFound = 404,
-  ValidationError = 422,
-}
+// enum StatusCode {
+//   InternalServerError = 500,
+//   TooManyRequests = 429,
+//   Success = 200 || 300,
+//   Unauthorized = 401,
+//   Forbidden = 403,
+//   NotFound = 404,
+//   ValidationError = 422,
+// }
 
-type CustomErrorResponse = {
-  message: string
-  errors: string[]
-}
+// type CustomErrorResponse = {
+//   message: string
+//   errors: string[]
+// }
 
 const headers: Readonly<Record<string, string | boolean>> = {
   Accept: 'application/json',

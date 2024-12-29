@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react'
 
 //TODO
-type props = {
-  key: string
-  initialState: string | null
-}
+// type props = {
+//   key: string
+//   initialState: string | null
+// }
 
 export default function useLocalStorage(key: string, initialState: string | null) {
   const [value, setValue] = useState(() => {

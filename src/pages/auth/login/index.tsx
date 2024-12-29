@@ -14,7 +14,6 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: {errors},
   } = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs> = async (values) => {
